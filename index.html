@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>รถเช่าพร้อมคนขับ 24 ชั่วโมง — บริการรถเหมาวัน</title>
+  <meta name="description" content="บริการรถเช่าพร้อมคนขับ 24 ชั่วโมง — รถเก๋ง, SUV, รถตู้ VIP ราคาชัดเจน บริการทั่วไทย" />
+  <meta name="theme-color" content="#0f766e" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .glass { backdrop-filter: blur(6px); background: rgba(255,255,255,0.6); }
+    .hero-bg { background-image: linear-gradient(90deg, rgba(15,118,110,0.9), rgba(6,95,70,0.85)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s='); background-size: cover; background-position: center; }
+    .floating-btn { @apply fixed bottom-5 right-5 flex flex-col gap-3 z-50; }
+  </style>
+</head>
+<body class="antialiased text-slate-800">
+  <!-- NAV -->
+  <nav class="w-full fixed top-0 left-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16">
+        <a href="#hero" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold">รถ</div>
+          <div class="hidden sm:block">
+            <div class="text-sm font-semibold">รถเช่าพร้อมคนขับ</div>
+            <div class="text-xs text-slate-200">บริการ 24 ชั่วโมง ทั่วไทย</div>
+          </div>
+        </a>
+        <div class="hidden md:flex items-center gap-6">
+          <a href="#fleet" class="hover:underline">ยานพาหนะ</a>
+          <a href="#pricing" class="hover:underline">แพ็กเกจ & ราคา</a>
+          <a href="#booking" class="hover:underline">จองตอนนี้</a>
+          <a href="#contact" class="px-4 py-2 bg-teal-600 text-white rounded-lg shadow hover:opacity-95">โทร: 063-638-5818</a>
+        </div>
+        <div class="md:hidden">
+          <button id="mobileBtn" class="p-2 bg-white/60 rounded-md glass">เมนู</button>
+        </div>
+      </div>
+    </div>
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white/80 glass">
+      <div class="px-4 py-3 flex flex-col gap-2">
+        <a href="#fleet">ยานพาหนะ</a>
+        <a href="#pricing">แพ็กเกจ & ราคา</a>
+        <a href="#booking">จองตอนนี้</a>
+        <a href="#contact">ติดต่อ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="hero" class="hero-bg min-h-[60vh] flex items-center pt-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="text-white">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">รถเช่าพร้อมคนขับ 24 ชั่วโมง
+            <div class="text-teal-200 text-lg mt-2">สะดวก ปลอดภัย ราคาชัดเจน — บริการทั้งรายวันและเที่ยวเดียว</div>
+          </h1>
+          <p class="mt-6 text-slate-100 max-w-xl">บริการรถเช่าพร้อมคนขับสำหรับทริปในเมือง ข้ามจังหวัด รับส่งสนามบิน งานอีเวนต์ และท่องเที่ยว ทีมงานมืออาชีพ รถใหม่ ทำความสะอาด ปลอดภัย</p>
+
+          <div class="mt-6 flex gap-3">
+            <a href="#booking" class="inline-block px-6 py-3 bg-white text-teal-700 rounded-lg font-semibold shadow">จองรถตอนนี้</a>
+            <a href="#contact" class="inline-block px-6 py-3 border border-white text-white rounded-lg">สอบถามเพิ่มเติม</a>
+          </div>
+
+          <div class="mt-6 text-slate-200 text-sm">
+            📞 จองรถโทร: <a href="tel:0636385818" class="underline">063-638-5818</a><br>
+            💬 ID Line: <a href="https://line.me/ti/p/~0643983552" class="underline">0643983552</a><br>
+            WhatsApp: <a href="https://wa.me/66636385818" class="underline">063-638-5818</a>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 shadow-lg">
+          <div class="text-sm font-medium text-slate-600">เลือกบริการของคุณ</div>
+          <form id="quickForm" class="mt-3 space-y-3">
+            <div>
+              <label class="text-xs text-slate-500">ประเภทบริการ</label>
+              <select id="serviceType" class="w-full border rounded px-3 py-2">
+                <option>รถเหมาภายในเมือง (รายวัน)</option>
+                <option>รับส่งสนามบิน</option>
+                <option>เที่ยวข้ามจังหวัด</option>
+                <option>งานอีเวนต์ / กิจกรรม</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs text-slate-500">วันที่</label>
+              <input id="date" type="date" class="w-full border rounded px-3 py-2" />
+            </div>
+            <div>
+              <label class="text-xs text-slate-500">ปลายทาง / เส้นทาง</label>
+              <input id="route" type="text" placeholder="เช่น กรุงเทพฯ → พัทยา" class="w-full border rounded px-3 py-2" />
+            </div>
+            <div>
+              <label class="text-xs text-slate-500">เบอร์ติดต่อ</label>
+              <input id="phone" type="tel" placeholder="063-638-5818" class="w-full border rounded px-3 py-2" />
+            </div>
+            <div class="flex gap-2">
+              <button type="button" onclick="submitQuickForm()" class="flex-1 px-4 py-2 bg-teal-600 text-white rounded">ส่งคำขอ</button>
+              <a href="#fleet" class="flex-1 px-4 py-2 border rounded text-center">ดูรถทั้งหมด</a>
+            </div>
+            <div id="formMsg" class="text-sm text-red-600"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Floating Buttons -->
+  <div class="floating-btn">
+    <a href="tel:0636385818" class="flex items-center gap-2 px-4 py-3 rounded-full shadow-lg bg-red-600 text-white font-semibold hover:opacity-90">
+      📞 โทรเลย
+    </a>
+    <a href="https://line.me/ti/p/~0643983552" target="_blank" class="flex items-center gap-2 px-4 py-3 rounded-full shadow-lg bg-green-600 text-white font-semibold hover:opacity-90">
+      💬 แอดไลน์
+    </a>
+  </div>
+
+  <!-- CONTACT -->
+  <footer id="contact" class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+        <h3 class="font-bold text-lg">ติดต่อเรา</h3>
+        <p class="text-sm text-slate-600 mt-2">
+          โทร: <a href="tel:0636385818">063-638-5818</a><br/>
+          Line ID: 0643983552<br/>
+          WhatsApp: <a href="https://wa.me/66636385818">063-638-5818</a><br/>
+          อีเมล: info@yourdomain.com
+        </p>
+        <div class="mt-4">
+          <a href="https://wa.me/66636385818" class="inline-block px-4 py-2 bg-green-600 text-white rounded">Chat WhatsApp</a>
+        </div>
+      </div>
+      <div>
+        <h3 class="font-semibold">ที่ตั้ง</h3>
+        <p class="text-sm text-slate-500 mt-2">ให้บริการทั่วไทย — สามารถระบุเขตการให้บริการเฉพาะจังหวัดได้</p>
+        <div class="mt-4 w-full h-40 bg-slate-100 rounded flex items-center justify-center text-slate-400">Google Map Embed</div>
+      </div>
+      <div>
+        <h3 class="font-semibold">เวลาทำการ</h3>
+        <p class="text-sm text-slate-500 mt-2">ให้บริการ 24 ชั่วโมง — บริการฉุกเฉินมีค่าใช้จ่ายเพิ่มเติม</p>
+        <div class="mt-4 text-sm text-slate-500">หมายเหตุ: โปรดติดต่อเพื่อยืนยันรถและคนขับก่อนวันเดินทาง</div>
+      </div>
+    </div>
+
+    <div class="mt-8 text-center text-slate-400">© <span id="year"></span> รถเช่าพร้อมคนขับ — สงวนลิขสิทธิ์</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('mobileBtn').addEventListener('click', function(){
+      const m = document.getElementById('mobileMenu');
+      m.classList.toggle('hidden');
+    });
+
+    function submitQuickForm(){
+      const phone = document.getElementById('phone').value.trim();
+      const date = document.getElementById('date').value;
+      const route = document.getElementById('route').value.trim();
+      if(!phone || !date || !route){
+        document.getElementById('formMsg').textContent = 'กรุณากรอกวันที่, เส้นทาง และเบอร์ติดต่อ';
+        return;
+      }
+      const msg = encodeURIComponent(`ขอเช่ารถ\nประเภท: ${document.getElementById('serviceType').value}\nวันที่: ${date}\nเส้นทาง: ${route}\nเบอร์: ${phone}`);
+      window.open(`https://wa.me/66636385818?text=${msg}`, '_blank');
+    }
+
+    function submitBooking(){
+      const name = document.getElementById('name').value.trim();
+      const start = document.getElementById('start').value.trim();
+      const dest = document.getElementById('destination').value.trim();
+      const date = document.getElementById('pickupDate').value;
+      const time = document.getElementById('pickupTime').value;
+      const phone = prompt('กรุณาระบุเบอร์ติดต่อเพื่อให้ทีมงานติดต่อกลับ (063-638-5818)');
+      if(!name || !start || !dest || !date || !time || !phone){
+        document.getElementById('bookingMsg').textContent = 'กรุณากรอกข้อมูลให้ครบและใส่เบอร์ติดต่อ';
+        return;
+      }
+      const car = document.getElementById('carType').value;
+      const notes = document.getElementById('notes').value;
+      const subject = encodeURIComponent('คำขอจองรถจากเว็บไซต์');
+      const body = encodeURIComponent(`ชื่อ: ${name}\nเบอร์: ${phone}\nจุดเริ่มต้น: ${start}\nปลายทาง: ${dest}\nวันที่: ${date} เวลา: ${time}\nรถที่ต้องการ: ${car}\nหมายเหตุ: ${notes}`);
+      window.location.href = `mailto:info@yourdomain.com?subject=${subject}&body=${body}`;
+      document.getElementById('bookingMsg').textContent = 'ส่งคำขอเรียบร้อยแล้ว — ทีมงานจะติดต่อกลับทางโทรศัพท์หรืออีเมล';
+    }
+  </script>
+</body>
+</html>
+
+
+ผมได้เพิ่ม ปุ่มโทร และ ปุ่มไลน์ แบบลอยอยู่มุมขวาล่างของเว็บเรียบร้อยแล้วครับ ✅
+
+🔹 ปุ่มแยก 2 อัน
+
+ปุ่มโทร (สีเขียว โทรศัพท์) → กดแล้วโทรทันที
+
+ปุ่มไลน์ (สีเขียวเข้ม ไอคอน Line) → กดแล้วเปิดแอป Line
+
+
+🔹 ปรับแต่งข้อความ
+
+ใช้ฟอนต์ขนาดพอดี อ่านง่าย
+
+ปรับพื้นหลัง, ไอคอน และเงาให้ดูมืออาชีพ
+
+
+คุณอยากให้ผมเพิ่ม แอนิเมชันเด้งเบา ๆ (bounce) ให้ปุ่มเวลาเลื่อนหน้าเว็บด้วยไหมครับ? 🎨✨
+
+
